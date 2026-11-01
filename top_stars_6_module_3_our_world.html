@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade 6 English - Module 3: Our World (Greetings from Argentina!)</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0fdf4;
+        }
+        .soft-card {
+            background: #ffffff;
+            border: 2px solid #dcfce7;
+            box-shadow: 0 10px 25px -5px rgba(22, 163, 74, 0.08);
+        }
+        .badge-green {
+            background-color: #dcfce7;
+            color: #15803d;
+            border: 1px solid #86efac;
+        }
+        .tab-btn {
+            transition: all 0.2s ease-in-out;
+            border: 2px solid #bbf7d0;
+            background-color: #ffffff;
+            color: #15803d;
+        }
+        .tab-btn.active {
+            background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+            color: white !important;
+            border-color: #16a34a !important;
+            box-shadow: 0 4px 14px rgba(22, 163, 74, 0.35);
+        }
+    </style>
+</head>
+<body class="min-h-screen py-6 px-3 sm:px-6 text-slate-800">
+
+    <div class="max-w-4xl mx-auto space-y-6">
+
+        <!-- Header Card -->
+        <div class="soft-card rounded-3xl p-5 sm:p-7 text-center relative overflow-hidden bg-gradient-to-br from-white via-emerald-50 to-amber-50">
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-emerald-100 pb-5">
+                <!-- Logo & School Name -->
+                <div class="flex items-center gap-3">
+                    <div class="w-14 h-14 bg-emerald-600 text-white rounded-2xl flex items-center justify-center font-black text-2xl shadow-md border-2 border-emerald-400">
+                        ب
+                    </div>
+                    <div class="text-left">
+                        <h2 class="text-lg font-extrabold text-emerald-950 leading-tight">مدارس البيارق الأهلية</h2>
+                        <p class="text-xs font-bold tracking-wider text-slate-500 uppercase">AL-BAYARIQ PRIVATE SCHOOLS</p>
+                    </div>
+                </div>
+
+                <!-- Main Title Section -->
+                <div class="text-center sm:text-right">
+                    <h1 class="text-2xl sm:text-3xl font-extrabold text-emerald-900 tracking-tight">Grade 6 – English</h1>
+                    <div class="mt-1 inline-block badge-green px-4 py-1 rounded-full text-xs sm:text-sm font-bold shadow-sm">
+                        Module 3: Our World (Greetings from Argentina!)
+                    </div>
+                </div>
+            </div>
+
+            <!-- Prepared By Sub Card -->
+            <div class="mt-4 bg-white/90 border border-emerald-200 rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between gap-3 shadow-sm">
+                <div class="text-left">
+                    <span class="inline-block bg-emerald-100 text-emerald-900 text-xs font-extrabold px-3 py-0.5 rounded-full uppercase">
+                        Top Stars 6 KSA Edition (Pages 34–35)
+                    </span>
+                    <h3 class="text-lg sm:text-xl font-extrabold text-emerald-900 mt-1">
+                        Prepared by: Mr. Mohamed Abdalla Abo Fahad
+                    </h3>
+                </div>
+                <div class="flex items-center gap-2 bg-emerald-50 px-4 py-2 rounded-xl border border-emerald-200">
+                    <i class="fa-solid fa-star text-amber-500 text-lg"></i>
+                    <span class="text-xs font-bold text-slate-700">Total Score: <span id="totalScore" class="text-emerald-700 text-lg font-extrabold">0</span>/25</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Student Input Section -->
+        <div class="soft-card rounded-3xl p-4 sm:p-5 flex flex-col sm:flex-row items-center gap-4">
+            <div class="flex-1 w-full">
+                <label for="studentName" class="block text-sm font-bold text-emerald-900 mb-1 flex items-center gap-2">
+                    <i class="fa-solid fa-user-graduate text-emerald-600"></i> Student Name:
+                </label>
+                <input 
+                    type="text" 
+                    id="studentName" 
+                    placeholder="Type your full name here..." 
+                    class="w-full px-4 py-2.5 rounded-xl border-2 border-emerald-200 focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100 outline-none text-slate-700 font-semibold text-base transition-all"
+                    oninput="updateStudentName()"
+                />
+            </div>
+            <div class="text-xs text-slate-500 font-medium sm:w-60 bg-emerald-50 p-3 rounded-xl border border-emerald-100">
+                <i class="fa-solid fa-circle-info text-emerald-600 mr-1"></i> Enter your name to personalize your interactive practice sheet and printable certificate.
+            </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="grid grid-cols-2 sm:grid-cols-6 gap-2">
+            <button onclick="switchTab('vocab')" id="tab-vocab" class="tab-btn active rounded-xl p-2.5 text-center font-bold text-xs">
+                <i class="fa-solid fa-book mb-1 text-base block"></i> 1. Vocab
+            </button>
+            <button onclick="switchTab('read')" id="tab-read" class="tab-btn rounded-xl p-2.5 text-center font-bold text-xs">
+                <i class="fa-solid fa-envelope mb-1 text-base block"></i> 2. Read
+            </button>
+            <button onclick="switchTab('comp')" id="tab-comp" class="tab-btn rounded-xl p-2.5 text-center font-bold text-xs">
+                <i class="fa-solid fa-circle-question mb-1 text-base block"></i> 3. Questions
+            </button>
+            <button onclick="switchTab('grammar')" id="tab-grammar" class="tab-btn rounded-xl p-2.5 text-center font-bold text-xs">
+                <i class="fa-solid fa-lightbulb mb-1 text-base block"></i> 4. Grammar
+            </button>
+            <button onclick="switchTab('listen')" id="tab-listen" class="tab-btn rounded-xl p-2.5 text-center font-bold text-xs">
+                <i class="fa-solid fa-headphones mb-1 text-base block"></i> 5. Listening
+            </button>
+            <button onclick="switchTab('speak')" id="tab-speak" class="tab-btn rounded-xl p-2.5 text-center font-bold text-xs col-span-2 sm:col-span-1">
+                <i class="fa-solid fa-comments mb-1 text-base block"></i> 6. Speaking
+            </button>
+        </div>
+
+        <!-- TAB 1: VOCABULARY MATCHING -->
+        <div id="content-vocab" class="soft-card rounded-3xl p-5 sm:p-7 space-y-5">
+            <div class="border-b border-emerald-100 pb-3 flex items-center justify-between">
+                <div>
+                    <h2 class="text-xl font-bold text-emerald-900"><i class="fa-solid fa-spell-check text-emerald-600 mr-2"></i>1. Vocabulary & Definitions (Page 34)</h2>
+                    <p class="text-xs text-slate-500">Match each vocabulary word from Steve's email with its correct definition (A-D).</p>
+                </div>
+            </div>
+
+            <div class="space-y-3" id="vocabMatchContainer">
+                <!-- Javascript will generate matching rows -->
+            </div>
+
+            <div class="flex items-center gap-3 pt-2">
+                <button onclick="checkVocabMatching()" class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold shadow">
+                    Check Vocabulary Answers
+                </button>
+                <div id="vocabFeedback" class="text-xs font-bold"></div>
+            </div>
+        </div>
+
+        <!-- TAB 2: EMAIL READING -->
+        <div id="content-read" class="hidden soft-card rounded-3xl p-5 sm:p-7 space-y-5">
+            <div class="border-b border-emerald-100 pb-3 flex items-center justify-between">
+                <div>
+                    <h2 class="text-xl font-bold text-emerald-900"><i class="fa-solid fa-envelope text-emerald-600 mr-2"></i>2. Read: Greetings from Argentina! (Page 34)</h2>
+                    <p class="text-xs text-slate-500">Read Steve's email to George and listen to the audio reading.</p>
+                </div>
+                <button onclick="speakEmailText()" class="px-3.5 py-1.5 bg-emerald-600 text-white rounded-xl text-xs font-bold hover:bg-emerald-700 shadow">
+                    <i class="fa-solid fa-volume-high mr-1"></i> Read Email
+                </button>
+            </div>
+
+            <!-- Email Display Screen -->
+            <div class="bg-slate-900 rounded-2xl p-4 sm:p-6 text-slate-100 shadow-lg space-y-4 font-sans border-4 border-slate-800">
+                <div class="border-b border-slate-700 pb-3 text-xs space-y-1">
+                    <div><span class="text-slate-400 font-bold">To:</span> george@mail.com</div>
+                    <div><span class="text-slate-400 font-bold">From:</span> steve@mail.com</div>
+                    <div><span class="text-emerald-400 font-bold">Subject:</span> Greetings from Argentina! 🇦🇷</div>
+                </div>
+
+                <div class="text-xs sm:text-sm leading-relaxed space-y-3 text-slate-200">
+                    <p>Dear George,</p>
+                    <p>How are you? Sorry I haven't written for so long, but I've been very busy studying. You see, I've been studying in Argentina for the last few weeks. My school organized a five-week exchange program and I am here with three other students.</p>
+                    <p>We've all been staying in Buenos Aires. The family I'm staying with has a son, Carlos. We go to school together every morning. I've been taking a Spanish class every morning during the first hour of school, and now I understand Spanish even better! My Spanish teacher says that he is really proud of me.</p>
+                    <p>I just love staying in Buenos Aires. It's a huge city and there are a lot of things to see and do. Carlos and I have been spending a lot of time together. Another thing I like about Argentina is the food. I especially like chimichurri! It's a delicious green sauce that they serve with grilled meat.</p>
+                    <p>You told me you're learning Chinese in your last email. How long have you been learning the language? I know you like foreign languages, but isn't Chinese difficult? Write back soon and tell me all about it.</p>
+                    <p>Best wishes,<br><strong class="text-emerald-400">Steve</strong></p>
+                </div>
+            </div>
+
+            <!-- Initial Question Check -->
+            <div class="bg-emerald-50 p-4 rounded-2xl border border-emerald-200 space-y-2">
+                <h3 class="font-bold text-emerald-950 text-sm">Initial Reading Check:</h3>
+                <p class="text-xs text-slate-700">Why has Steve been in Argentina for the last few weeks?</p>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs font-semibold">
+                    <button onclick="checkInitQ(0)" id="initQ0" class="p-2.5 bg-white border rounded-xl text-left hover:bg-emerald-100">A) On a family vacation</button>
+                    <button onclick="checkInitQ(1)" id="initQ1" class="p-2.5 bg-white border rounded-xl text-left hover:bg-emerald-100">B) On a 5-week exchange program</button>
+                    <button onclick="checkInitQ(2)" id="initQ2" class="p-2.5 bg-white border rounded-xl text-left hover:bg-emerald-100">C) For a sports competition</button>
+                </div>
+                <div id="initQFb" class="text-xs font-bold mt-1"></div>
+            </div>
+        </div>
+
+        <!-- TAB 3: COMPREHENSION QUESTIONS -->
+        <div id="content-comp" class="hidden soft-card rounded-3xl p-5 sm:p-7 space-y-5">
+            <div class="border-b border-emerald-100 pb-3">
+                <h2 class="text-xl font-bold text-emerald-900"><i class="fa-solid fa-list-check text-emerald-600 mr-2"></i>3. Reading Comprehension (Page 35)</h2>
+                <p class="text-xs text-slate-500">Read again and select or type the best answer for each question.</p>
+            </div>
+
+            <div class="space-y-4" id="compQuestionsContainer">
+                <!-- Javascript will populate questions -->
+            </div>
+
+            <div class="flex items-center gap-3 pt-2">
+                <button onclick="checkComprehensionAnswers()" class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold shadow">
+                    Check Comprehension Answers
+                </button>
+                <div id="compFeedback" class="text-xs font-bold"></div>
+            </div>
+        </div>
+
+        <!-- TAB 4: GRAMMAR LOOK BOX -->
+        <div id="content-grammar" class="hidden soft-card rounded-3xl p-5 sm:p-7 space-y-6">
+            <div class="border-b border-emerald-100 pb-3">
+                <h2 class="text-xl font-bold text-emerald-900"><i class="fa-solid fa-lightbulb text-amber-500 mr-2"></i>4. Grammar Focus: LOOK! Box (Page 35)</h2>
+                <p class="text-xs text-slate-500">Present Perfect Continuous vs. Present Perfect (*for* vs *since*).</p>
+            </div>
+
+            <!-- Rules Display -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="bg-amber-50 p-4 rounded-2xl border-2 border-amber-200 space-y-2 text-xs">
+                    <span class="bg-amber-400 text-amber-950 font-black px-2 py-0.5 rounded text-[10px] uppercase">Action in Progress</span>
+                    <h3 class="font-bold text-amber-900 text-sm">Present Perfect Continuous</h3>
+                    <p><strong>have / has + been + verb(-ing)</strong></p>
+                    <p class="text-slate-700">• Bob <em>has been sending</em> emails since 9 o'clock.</p>
+                    <p class="text-slate-700">• I <em>have been living</em> in California for 6 months.</p>
+                </div>
+
+                <div class="bg-emerald-50 p-4 rounded-2xl border-2 border-emerald-200 space-y-2 text-xs">
+                    <span class="bg-emerald-500 text-white font-black px-2 py-0.5 rounded text-[10px] uppercase">Completed Result</span>
+                    <h3 class="font-bold text-emerald-900 text-sm">Present Perfect Simple</h3>
+                    <p><strong>have / has + Past Participle (V3)</strong></p>
+                    <p class="text-slate-700">• He <em>has sent</em> 5 emails so far.</p>
+                    <p class="text-slate-700">• I've <em>visited</em> the ancient city of Cobá.</p>
+                </div>
+            </div>
+
+            <!-- Grammar Exercise: Since vs For -->
+            <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-3">
+                <h3 class="font-bold text-slate-800 text-sm"><i class="fa-solid fa-pen-to-square text-emerald-600 mr-1"></i> Practice: Choose 'for' or 'since'</h3>
+                <div class="space-y-2 text-xs sm:text-sm">
+                    <div class="flex items-center justify-between p-2.5 bg-white rounded-xl border border-slate-200">
+                        <span>1. Steve has been living in California _____ six months.</span>
+                        <select id="gForSince1" class="p-1.5 border rounded-lg text-xs font-bold">
+                            <option value="">Select</option>
+                            <option value="for">for</option>
+                            <option value="since">since</option>
+                        </select>
+                    </div>
+                    <div class="flex items-center justify-between p-2.5 bg-white rounded-xl border border-slate-200">
+                        <span>2. Bob has been sending emails _____ nine o'clock.</span>
+                        <select id="gForSince2" class="p-1.5 border rounded-lg text-xs font-bold">
+                            <option value="">Select</option>
+                            <option value="for">for</option>
+                            <option value="since">since</option>
+                        </select>
+                    </div>
+                    <div class="flex items-center justify-between p-2.5 bg-white rounded-xl border border-slate-200">
+                        <span>3. I have been studying Spanish _____ May.</span>
+                        <select id="gForSince3" class="p-1.5 border rounded-lg text-xs font-bold">
+                            <option value="">Select</option>
+                            <option value="for">for</option>
+                            <option value="since">since</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-3 pt-2">
+                    <button onclick="checkGrammarForSince()" class="px-5 py-2 bg-emerald-600 text-white rounded-xl text-xs font-bold hover:bg-emerald-700 shadow">
+                        Check For/Since Answers
+                    </button>
+                    <div id="grammarFb" class="text-xs font-bold"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 5: LISTENING PRACTICE -->
+        <div id="content-listen" class="hidden soft-card rounded-3xl p-5 sm:p-7 space-y-6">
+            <div class="border-b border-emerald-100 pb-3 flex items-center justify-between">
+                <div>
+                    <h2 class="text-xl font-bold text-emerald-900"><i class="fa-solid fa-headphones text-emerald-600 mr-2"></i>5. Listening Activity (Section 4 - Page 35)</h2>
+                    <p class="text-xs text-slate-500">Listen to the conversation between two old friends and answer.</p>
+                </div>
+                <button onclick="playListeningAudioSimulation()" class="px-3.5 py-1.5 bg-emerald-600 text-white rounded-xl text-xs font-bold hover:bg-emerald-700 shadow">
+                    <i class="fa-solid fa-play mr-1"></i> Play Audio Dialogue
+                </button>
+            </div>
+
+            <!-- Part A -->
+            <div class="bg-emerald-50 p-4 rounded-2xl border border-emerald-200 space-y-3">
+                <h3 class="font-bold text-emerald-950 text-sm">Part A: How do the men know each other?</h3>
+                <div class="space-y-2 text-xs sm:text-sm">
+                    <label class="flex items-center gap-2 p-2.5 bg-white rounded-xl border border-emerald-200 cursor-pointer">
+                        <input type="radio" name="listenPartA" value="A"> A) They worked together.
+                    </label>
+                    <label class="flex items-center gap-2 p-2.5 bg-white rounded-xl border border-emerald-200 cursor-pointer">
+                        <input type="radio" name="listenPartA" value="B"> B) They traveled together.
+                    </label>
+                    <label class="flex items-center gap-2 p-2.5 bg-white rounded-xl border border-emerald-200 cursor-pointer">
+                        <input type="radio" name="listenPartA" value="C"> C) They went to college together.
+                    </label>
+                </div>
+            </div>
+
+            <!-- Part B -->
+            <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-3">
+                <h3 class="font-bold text-slate-800 text-sm">Part B: Complete the sentences with words or numbers:</h3>
+                
+                <div class="space-y-3 text-xs sm:text-sm">
+                    <div>
+                        1. The two friends haven't seen each other for <input type="text" id="lB1" class="w-24 p-1 border rounded text-center font-bold" placeholder="..."> years.
+                    </div>
+                    <div>
+                        2. Frank has been living in <input type="text" id="lB2" class="w-32 p-1 border rounded text-center font-bold" placeholder="..."> for three years.
+                    </div>
+                    <div>
+                        3. Doug <input type="text" id="lB3" class="w-32 p-1 border rounded text-center font-bold" placeholder="..."> in Egypt for two years.
+                    </div>
+                    <div>
+                        4. Doug has been working at the <input type="text" id="lB4" class="w-32 p-1 border rounded text-center font-bold" placeholder="..."> he and Frank went to.
+                    </div>
+                    <div>
+                        5. Frank invites Doug to visit Alaska in <input type="text" id="lB5" class="w-28 p-1 border rounded text-center font-bold" placeholder="...">.
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-3 pt-2">
+                    <button onclick="checkListeningAnswers()" class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold shadow">
+                        Check Listening Answers
+                    </button>
+                    <div id="listeningFb" class="text-xs font-bold"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 6: SPEAKING SIMULATOR -->
+        <div id="content-speak" class="hidden soft-card rounded-3xl p-5 sm:p-7 space-y-6">
+            <div class="border-b border-emerald-100 pb-3">
+                <h2 class="text-xl font-bold text-emerald-900"><i class="fa-solid fa-comments text-emerald-600 mr-2"></i>6. Pairwork Speaking Practice (Section 5 - Page 35)</h2>
+                <p class="text-xs text-slate-500">Practice asking and answering about long-term actions and accomplishments.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <!-- Situation Selector -->
+                <div class="bg-emerald-50 p-4 rounded-2xl border border-emerald-200 space-y-3">
+                    <h3 class="font-bold text-emerald-900 text-sm">Select Situation:</h3>
+                    <select id="speakSit" onchange="updateSpeakingRoleplay()" class="w-full p-2.5 border rounded-xl font-semibold text-xs text-slate-700">
+                        <option value="0">live in Mexico → 1 year / visit ancient city of Cobá</option>
+                        <option value="1">learn Chinese → 2 years / get a certificate</option>
+                        <option value="2">do history project → 1 hour / write a page</option>
+                        <option value="3">take pottery classes → 2 weeks / made two vases</option>
+                    </select>
+
+                    <button onclick="speakRoleplayDialogue()" class="w-full py-2 bg-emerald-600 text-white font-bold rounded-xl text-xs shadow hover:bg-emerald-700">
+                        <i class="fa-solid fa-volume-high mr-1"></i> Listen Conversation
+                    </button>
+                </div>
+
+                <!-- Live Chat Simulation Box -->
+                <div class="bg-slate-900 text-slate-100 p-4 rounded-2xl border border-slate-800 space-y-3 text-xs sm:text-sm" id="speakChatBox">
+                    <!-- Dynamic chat content -->
+                </div>
+            </div>
+        </div>
+
+        <!-- FINAL CERTIFICATE CARD -->
+        <div id="certificateCard" class="soft-card rounded-3xl p-6 sm:p-8 text-center space-y-4 bg-gradient-to-br from-white via-emerald-50/40 to-amber-50">
+            <div class="w-16 h-16 bg-emerald-600 text-white rounded-full flex items-center justify-center mx-auto text-3xl shadow-md border-2 border-emerald-300">
+                <i class="fa-solid fa-award"></i>
+            </div>
+            <h3 class="text-2xl font-black text-emerald-950">Certificate of Completion</h3>
+            <p class="text-slate-600 text-sm font-medium">
+                This certifies that <strong id="certStudentName" class="text-emerald-900 underline text-base">Student Name</strong> has successfully completed the interactive lesson for <strong>Top Stars 6 - Module 3: Our World</strong>.
+            </p>
+            <div class="text-3xl font-extrabold text-emerald-700">
+                Final Score: <span id="certScore">0</span> / 25 Points
+            </div>
+            <div class="text-xs text-slate-500 border-t border-emerald-100 pt-3">
+                <p><strong>مدارس البيارق الأهلية</strong> (AL-BAYARIQ PRIVATE SCHOOLS)</p>
+                <p class="font-bold text-emerald-900 mt-0.5">Teacher: Mr. Mohamed Abdalla Abo Fahad</p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="text-center py-4 text-xs font-semibold text-slate-500">
+            &copy; AL-BAYARIQ PRIVATE SCHOOLS • Grade 6 English Interactive Learning Hub
+        </footer>
+
+    </div>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Vocabulary Dataset
+        const vocabList = [
+            { word: 'busy', correctKey: 'B', meaning: 'مشغول', def: 'A) belonging or connected to another country' },
+            { word: 'exchange program', correctKey: 'D', meaning: 'برنامج تبادل طلابي', def: 'B) having a lot of things to do' },
+            { word: 'proud', correctKey: 'C', meaning: 'فخور', def: 'C) feeling pleasure or joy because you or someone you know has done something good' },
+            { word: 'foreign', correctKey: 'A', meaning: 'أجنبي / خارجي', def: 'D) an organized plan, in which students from one country visit another country to study' }
+        ];
+
+        // Comprehension Questions Dataset
+        const compQuestions = [
+            {
+                q: "1. How long is the exchange program?",
+                options: ["3 weeks", "5 weeks / five weeks", "6 months"],
+                ans: 1
+            },
+            {
+                q: "2. What has Steve been doing during the first hour of school?",
+                options: ["Playing football", "Taking a Spanish class", "Visiting museums"],
+                ans: 1
+            },
+            {
+                q: "3. What is Buenos Aires like?",
+                options: ["It's a small quiet town", "It's a huge city with a lot to see and do", "It's very cold and rainy"],
+                ans: 1
+            },
+            {
+                q: "4. What are the two things Steve likes about Argentina?",
+                options: ["The weather and mountains", "The city/Buenos Aires and the food", "The school and cars"],
+                ans: 1
+            },
+            {
+                q: "5. Which Argentinian food does Steve really like?",
+                options: ["Chimichurri (sauce with grilled meat)", "Tacos", "Pizza"],
+                ans: 0
+            }
+        ];
+
+        // Global Scores
+        let scores = {
+            vocab: 0,
+            initQ: 0,
+            comp: 0,
+            grammar: 0,
+            listen: 0
+        };
+
+        function updateStudentName() {
+            const nameVal = document.getElementById('studentName').value.trim();
+            document.getElementById('certStudentName').innerText = nameVal !== "" ? nameVal : "Student Name";
+        }
+
+        function calculateTotalScore() {
+            const total = scores.vocab + scores.initQ + scores.comp + scores.grammar + scores.listen;
+            document.getElementById('totalScore').innerText = total;
+            document.getElementById('certScore').innerText = total;
+        }
+
+        function switchTab(tabId) {
+            const tabs = ['vocab', 'read', 'comp', 'grammar', 'listen', 'speak'];
+            tabs.forEach(t => {
+                document.getElementById(`content-${t}`).classList.add('hidden');
+                document.getElementById(`tab-${t}`).classList.remove('active');
+            });
+            document.getElementById(`content-${tabId}`).classList.remove('hidden');
+            document.getElementById(`tab-${tabId}`).classList.add('active');
+        }
+
+        function speak(text) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const msg = new SpeechSynthesisUtterance(text);
+                msg.lang = 'en-US';
+                msg.rate = 0.85;
+                window.speechSynthesis.speak(msg);
+            }
+        }
+
+        // Render Vocabulary Matching
+        function renderVocabMatching() {
+            const container = document.getElementById('vocabMatchContainer');
+            container.innerHTML = vocabList.map((item, idx) => `
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between p-3.5 bg-white border border-emerald-200 rounded-2xl gap-3">
+                    <div class="flex items-center gap-2">
+                        <button onclick="speak('${item.word}')" class="px-2.5 py-1 bg-emerald-100 text-emerald-800 text-xs font-bold rounded-lg hover:bg-emerald-200">
+                            🔊
+                        </button>
+                        <span class="font-bold text-emerald-950 text-sm">${idx + 1}. ${item.word}</span>
+                        <span class="text-xs text-slate-400">(${item.meaning})</span>
+                    </div>
+
+                    <select id="vSelect${idx}" class="p-2 border border-slate-300 rounded-xl text-xs font-bold w-full sm:w-auto">
+                        <option value="">Select Definition Choice</option>
+                        <option value="A">A) belonging or connected to another country</option>
+                        <option value="B">B) having a lot of things to do</option>
+                        <option value="C">C) feeling pleasure or joy because you or someone you know has done something good</option>
+                        <option value="D">D) an organized plan, in which students visit another country to study</option>
+                    </select>
+                </div>
+            `).join('');
+        }
+
+        function checkVocabMatching() {
+            let pts = 0;
+            vocabList.forEach((item, idx) => {
+                const val = document.getElementById(`vSelect${idx}`).value;
+                if (val === item.correctKey) pts += 1;
+            });
+
+            scores.vocab = pts;
+            calculateTotalScore();
+
+            const fb = document.getElementById('vocabFeedback');
+            if (pts === 4) {
+                fb.className = "text-xs font-bold text-emerald-600";
+                fb.innerHTML = "✓ Perfect! All vocabulary definitions matched correctly (+4 pts).";
+            } else {
+                fb.className = "text-xs font-bold text-amber-600";
+                fb.innerHTML = `You matched ${pts}/4 correctly. Please check again!`;
+            }
+        }
+
+        // Email Audio Reading
+        function speakEmailText() {
+            speak("Dear George, How are you? Sorry I haven't written for so long, but I've been very busy studying. You see, I've been studying in Argentina for the last few weeks. My school organized a five-week exchange program and I am here with three other students.");
+        }
+
+        function checkInitQ(idx) {
+            const fb = document.getElementById('initQFb');
+            if (idx === 1) {
+                fb.className = "text-xs font-bold text-emerald-600";
+                fb.innerHTML = "✓ Correct! He is on a five-week exchange program (+2 pts).";
+                scores.initQ = 2;
+            } else {
+                fb.className = "text-xs font-bold text-rose-600";
+                fb.innerHTML = "Incorrect. Check the email: Steve is on a five-week exchange program.";
+                scores.initQ = 0;
+            }
+            calculateTotalScore();
+        }
+
+        // Render Comprehension Questions
+        function renderComprehension() {
+            const container = document.getElementById('compQuestionsContainer');
+            container.innerHTML = compQuestions.map((qItem, idx) => `
+                <div class="p-3.5 bg-slate-50 rounded-2xl border border-slate-200 space-y-2 text-xs sm:text-sm">
+                    <div class="font-bold text-slate-800">${qItem.q}</div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                        ${qItem.options.map((opt, oIdx) => `
+                            <button onclick="selectCompOption(${idx}, ${oIdx})" id="cBtn_${idx}_${oIdx}" class="cBtn_${idx} p-2 bg-white border border-slate-300 rounded-xl font-semibold text-slate-700 text-left hover:bg-emerald-50 transition-all">
+                                ${opt}
+                            </button>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        let compUserAnswers = {};
+
+        function selectCompOption(qIdx, oIdx) {
+            compUserAnswers[qIdx] = oIdx;
+            document.querySelectorAll(`.cBtn_${qIdx}`).forEach((btn, i) => {
+                if (i === oIdx) {
+                    btn.className = `cBtn_${qIdx} p-2 bg-emerald-600 text-white font-bold rounded-xl text-left shadow`;
+                } else {
+                    btn.className = `cBtn_${qIdx} p-2 bg-white border border-slate-300 font-semibold text-slate-700 rounded-xl text-left`;
+                }
+            });
+        }
+
+        function checkComprehensionAnswers() {
+            let pts = 0;
+            compQuestions.forEach((qItem, idx) => {
+                if (compUserAnswers[idx] === qItem.ans) pts += 2;
+            });
+
+            scores.comp = pts;
+            calculateTotalScore();
+
+            const fb = document.getElementById('compFeedback');
+            fb.className = "text-xs font-bold text-emerald-600";
+            fb.innerHTML = `✓ You scored ${pts}/10 points in comprehension questions!`;
+        }
+
+        // Grammar For vs Since Check
+        function checkGrammarForSince() {
+            const g1 = document.getElementById('gForSince1').value;
+            const g2 = document.getElementById('gForSince2').value;
+            const g3 = document.getElementById('gForSince3').value;
+
+            let pts = 0;
+            if (g1 === 'for') pts += 1;
+            if (g2 === 'since') pts += 1;
+            if (g3 === 'since') pts += 1;
+
+            scores.grammar = pts;
+            calculateTotalScore();
+
+            const fb = document.getElementById('grammarFb');
+            if (pts === 3) {
+                fb.className = "text-xs font-bold text-emerald-600";
+                fb.innerHTML = "✓ Great! 'for' is used for duration, and 'since' for a starting point (+3 pts).";
+            } else {
+                fb.className = "text-xs font-bold text-amber-600";
+                fb.innerHTML = `You got ${pts}/3 correct. Review: for 6 months, since 9 o'clock, since May.`;
+            }
+        }
+
+        // Listening Exercises
+        function playListeningAudioSimulation() {
+            speak("Frank and Doug haven't seen each other for five years. Frank has been living in Alaska for three years. Doug has been working in Egypt for two years at the college he and Frank went to. Frank invites Doug to visit Alaska in July.");
+        }
+
+        function checkListeningAnswers() {
+            const partA = document.querySelector('input[name="listenPartA"]:checked')?.value;
+            const b1 = document.getElementById('lB1').value.trim().toLowerCase();
+            const b2 = document.getElementById('lB2').value.trim().toLowerCase();
+            const b3 = document.getElementById('lB3').value.trim().toLowerCase();
+            const b4 = document.getElementById('lB4').value.trim().toLowerCase();
+            const b5 = document.getElementById('lB5').value.trim().toLowerCase();
+
+            let pts = 0;
+            if (partA === 'C') pts += 1; // college
+            if (b1 === '5' || b1 === 'five') pts += 1;
+            if (b2.includes('alaska')) pts += 1;
+            if (b3.includes('worked') || b3.includes('has been working') || b3.includes('lived')) pts += 1;
+            if (b4.includes('college') || b4.includes('school')) pts += 1;
+
+            scores.listen = pts;
+            calculateTotalScore();
+
+            const fb = document.getElementById('listeningFb');
+            fb.className = "text-xs font-bold text-emerald-600";
+            fb.innerHTML = `✓ Listening checked! You earned ${pts}/5 points.`;
+        }
+
+        // Speaking Simulator Logic
+        const speakScenarios = [
+            { q1: "How long have you been living in Mexico?", a1: "I've been living here for a year.", q2: "What have you done so far?", a2: "I've visited the ancient city of Cobá." },
+            { q1: "How long have you been learning Chinese?", a1: "I've been learning Chinese for two years.", q2: "What have you done so far?", a2: "I've got a certificate." },
+            { q1: "How long have you been doing your history project?", a1: "I've been doing it for one hour.", q2: "What have you done so far?", a2: "I've written a page." },
+            { q1: "How long have you been taking pottery classes?", a1: "I've been taking classes for two weeks.", q2: "What have you done so far?", a2: "I've made two vases." }
+        ];
+
+        function updateSpeakingRoleplay() {
+            const idx = document.getElementById('speakSit').value;
+            const data = speakScenarios[idx];
+            const box = document.getElementById('speakChatBox');
+
+            box.innerHTML = `
+                <div class="text-emerald-400"><strong>Student A:</strong> ${data.q1}</div>
+                <div class="text-slate-200"><strong>Student B:</strong> ${data.a1}</div>
+                <div class="text-emerald-400 mt-2"><strong>Student A:</strong> ${data.q2}</div>
+                <div class="text-slate-200"><strong>Student B:</strong> ${data.a2}</div>
+            `;
+        }
+
+        function speakRoleplayDialogue() {
+            const idx = document.getElementById('speakSit').value;
+            const data = speakScenarios[idx];
+            speak(`${data.q1} ${data.a1} ${data.q2} ${data.a2}`);
+        }
+
+        // Initial Setup
+        window.onload = function() {
+            renderVocabMatching();
+            renderComprehension();
+            updateSpeakingRoleplay();
+        };
+    </script>
+</body>
+</html>
